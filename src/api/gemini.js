@@ -25,7 +25,7 @@ export const askGemini = async (question, schemeData, fullDatabase = []) => {
   }
 
   const prompt = `
-    You are LUNAR AI, an expert advisor for Indian Government Schemes.
+    You are SATHI AI, an expert advisor for Indian Government Schemes.
     
     KNOWLEDGE BASE:
     ${dataContext}

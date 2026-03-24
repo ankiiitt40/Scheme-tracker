@@ -28,7 +28,7 @@ const About = () => {
               EMPOWERING <br/> <span className="text-slate-500">INDIVIDUALS.</span>
             </h1>
             <p className="text-lg md:text-xl text-slate-400 leading-relaxed max-w-xl">
-              Lunar Voyager is the next-gen discovery platform for government schemes, using AI to bridge the gap between complex policy and eligible citizens.
+              SchemeSathi is the next-gen discovery platform for government schemes, using AI to bridge the gap between complex policy and eligible citizens.
             </p>
             <div className="flex gap-4 pt-4">
                <button className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-white text-black font-black uppercase tracking-widest text-[10px] sm:text-xs rounded-2xl hover:bg-slate-200 transition-all active:scale-95 shadow-2xl shadow-white/5 flex items-center justify-center gap-2">
@@ -66,7 +66,7 @@ const About = () => {
             </div>
             <div className="md:col-span-2 text-base sm:text-lg text-slate-400 leading-relaxed space-y-6">
               <p>
-                In a country as vast as India, thousands of government schemes go unused simply because of a lack of awareness or the complexity of the application process. Lunar Voyager addresses this by centralizing knowledge.
+                In a country as vast as India, thousands of government schemes go unused simply because of a lack of awareness or the complexity of the application process. SchemeSathi addresses this by centralizing knowledge.
               </p>
               <p>
                 Our platform doesn't just list schemes; it guides you through them. From calculating income eligibility to providing a detailed task list for your local tehsil visit, we ensure you never miss a benefit you are entitled to.

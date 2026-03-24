@@ -27,10 +27,10 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group shrink-0">
             <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform">
-              <span className="text-white font-black text-xl">L</span>
+              <span className="text-white font-black text-xl">S</span>
             </div>
             <span className="text-xl md:text-2xl font-black text-white tracking-tighter">
-              LUNAR<span className="text-indigo-500">VOYAGER</span>
+              SCHEME<span className="text-indigo-500">SATHI</span>
             </span>
           </Link>
 

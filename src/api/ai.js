@@ -3,7 +3,7 @@ const API_URL = "https://api.openai.com/v1/chat/completions";
 
 export const askAI = async (question, schemeData, fullDatabase = []) => {
   if (!API_KEY || API_KEY.includes("your_openai_key")) {
-    return "Please link your OpenAI API key in the .env file to activate LUNAR AI.";
+    return "Please link your OpenAI API key in the .env file to activate SATHI AI.";
   }
 
   let dataContext = "";

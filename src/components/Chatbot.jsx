@@ -8,7 +8,7 @@ import { schemes } from '../data/schemes';
 const Chatbot = ({ schemeData }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: 'bot', text: "Hello! I'm LUNAR AI, your Government Scheme Expert. How can I assist you with your discovery mission today?" }
+    { role: 'bot', text: "Hello! I'm SATHI AI, your Government Scheme Expert. How can I assist you with your discovery mission today?" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -57,7 +57,7 @@ const Chatbot = ({ schemeData }) => {
                   <Bot size={20} className="text-white" />
                 </div>
                 <div>
-                  <h4 className="text-white font-bold text-sm">LUNAR AI</h4>
+                  <h4 className="text-white font-bold text-sm">SATHI AI</h4>
                   <p className="text-indigo-300 text-[10px] uppercase font-bold tracking-widest">Expert Advisor</p>
                 </div>
               </div>
@@ -114,7 +114,7 @@ const Chatbot = ({ schemeData }) => {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder="Ask LUNAR AI..."
+                  placeholder="Ask SATHI AI..."
                   className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-white text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 transition-colors"
                 />
                 <button 
