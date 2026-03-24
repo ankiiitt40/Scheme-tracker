@@ -36,7 +36,7 @@ export const askAI = async (question, schemeData, fullDatabase = []) => {
         messages: [
           {
             role: "system",
-            content: `You are LUNAR AI, an elite Government Scheme expert. 
+            content: `You are SATHI AI, an elite Government Scheme expert. 
 
             SYSTEMATIC RESPONSE RULES:
             1. Use Markdown for structuring. 
