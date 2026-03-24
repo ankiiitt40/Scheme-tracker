@@ -27,9 +27,9 @@ const Hero = () => {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.1, duration: 0.5 }}
-          className="text-6xl md:text-8xl font-black text-white leading-tight mb-8 tracking-tighter"
+          className="text-4xl sm:text-6xl md:text-8xl font-black text-white leading-tight mb-8 tracking-tighter"
         >
-          Find the Right <br />
+          Find the Right <br className="hidden sm:block" />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-violet-400 to-blue-400">
             Government Scheme
           </span>
@@ -39,7 +39,7 @@ const Hero = () => {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed"
+          className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed"
         >
           Discover eligibility, benefits, and step-by-step guides for hundreds of schemes using our AI-driven search and recommendation engine.
         </motion.p>

@@ -38,28 +38,28 @@ const Details = () => {
       <Navbar />
       <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} />
 
-      <main className="pt-32 pb-24 max-w-7xl mx-auto px-6">
+      <main className="pt-24 sm:pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6">
         {/* Back Link */}
-        <Link to="/" className="inline-flex items-center gap-2 text-slate-400 hover:text-white mb-8 transition-colors group">
-          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" /> Back to Discover
+        <Link to="/" className="inline-flex items-center gap-2 text-slate-400 hover:text-white mb-8 transition-colors group text-sm">
+          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Discover
         </Link>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Main Info */}
-          <div className="lg:col-span-8 space-y-12">
+          <div className="lg:col-span-8 space-y-8 md:space-y-12">
             <section>
-              <div className="flex flex-wrap items-center gap-4 mb-6">
-                <span className="px-4 py-1.5 bg-indigo-500/20 text-indigo-300 rounded-full text-xs font-black tracking-widest uppercase border border-indigo-500/20">
+              <div className="flex flex-wrap items-center gap-3 mb-6">
+                <span className="px-3 sm:px-4 py-1.5 bg-indigo-500/20 text-indigo-300 rounded-full text-[10px] font-black tracking-widest uppercase border border-indigo-500/20">
                   {scheme.type} Scheme
                 </span>
-                <span className="px-4 py-1.5 bg-white/5 text-slate-400 rounded-full text-xs font-black tracking-widest uppercase border border-white/10">
+                <span className="px-3 sm:px-4 py-1.5 bg-white/5 text-slate-400 rounded-full text-[10px] font-black tracking-widest uppercase border border-white/10">
                   {scheme.category}
                 </span>
               </div>
-              <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter leading-tight text-white">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-black mb-6 tracking-tighter leading-[1.1] text-white uppercase">
                 {scheme.name}
               </h1>
-              <p className="text-xl text-slate-400 leading-relaxed max-w-3xl">
+              <p className="text-lg md:text-xl text-slate-400 leading-relaxed max-w-3xl">
                 {scheme.benefits}
               </p>
             </section>

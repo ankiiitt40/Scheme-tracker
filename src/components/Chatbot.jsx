@@ -41,17 +41,17 @@ const Chatbot = ({ schemeData }) => {
   };
 
   return (
-    <div className="fixed bottom-8 right-8 z-50">
+    <div className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50">
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="bg-[#0F172A] w-96 h-[500px] mb-6 rounded-3xl flex flex-col overflow-hidden shadow-2xl border border-white/10"
+            className="bg-[#0F172A] w-[calc(100vw-2rem)] sm:w-96 h-[500px] mb-4 sm:mb-6 rounded-3xl flex flex-col overflow-hidden shadow-2xl border border-white/10"
           >
             {/* Header */}
-            <div className="p-6 bg-indigo-600/20 border-b border-white/10 flex items-center justify-between">
+            <div className="p-4 sm:p-6 bg-indigo-600/20 border-b border-white/10 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
                   <Bot size={20} className="text-white" />
@@ -63,17 +63,17 @@ const Chatbot = ({ schemeData }) => {
               </div>
               <button 
                 onClick={() => setIsOpen(false)}
-                className="text-slate-400 hover:text-white transition-colors"
+                className="text-slate-400 hover:text-white transition-colors p-2"
               >
                 <X size={20} />
               </button>
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-transparent custom-scrollbar">
+            <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 bg-transparent custom-scrollbar">
               {messages.map((m, i) => (
                 <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[90%] p-4 rounded-2xl text-sm leading-relaxed ${
+                  <div className={`max-w-[90%] p-4 rounded-2xl text-[13px] sm:text-sm leading-relaxed ${
                     m.role === 'user' 
                       ? 'bg-indigo-600 text-white rounded-tr-none shadow-lg font-medium' 
                       : 'bg-white/5 text-slate-300 border border-white/10 rounded-tl-none markdown-container'
@@ -107,7 +107,7 @@ const Chatbot = ({ schemeData }) => {
             </div>
 
             {/* Input */}
-            <div className="p-6 bg-white/5 border-t border-white/10">
+            <div className="p-4 sm:p-6 bg-white/5 border-t border-white/10">
               <div className="flex gap-2">
                 <input 
                   type="text"
@@ -119,7 +119,7 @@ const Chatbot = ({ schemeData }) => {
                 />
                 <button 
                   onClick={handleSend}
-                  className="bg-indigo-600 text-white p-2 rounded-xl hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-500/20"
+                  className="bg-indigo-600 text-white p-2.5 rounded-xl hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-500/20"
                 >
                   <Send size={18} />
                 </button>
@@ -139,6 +139,7 @@ const Chatbot = ({ schemeData }) => {
         <MessageCircle size={28} />
       </motion.button>
     </div>
+
   );
 };
 

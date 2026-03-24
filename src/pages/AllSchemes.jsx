@@ -28,35 +28,35 @@ const AllSchemes = () => {
       {/* Background Glow */}
       <div className="fixed top-[-10%] right-[-10%] w-[50%] h-[50%] bg-indigo-600/10 blur-[120px] rounded-full -z-10" />
 
-      <main className="max-w-7xl mx-auto px-6">
-        <header className="mb-16">
-          <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-tight mb-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6">
+        <header className="mb-12 sm:mb-16">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter leading-tight mb-8">
             ALL <span className="text-indigo-500">SCHEMES</span>
           </h1>
-          <div className="flex flex-wrap items-center gap-6">
-            <div className="flex-1 min-w-[300px] relative group">
-               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-indigo-500 transition-colors" size={20} />
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
+            <div className="flex-1 min-w-0 relative group">
+               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-indigo-500 transition-colors" size={18} />
                <input 
                  type="text"
                  placeholder="Search by name..."
                  value={searchTerm}
                  onChange={(e) => setSearchTerm(e.target.value)}
-                 className="w-full bg-[#0F172A] border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all font-black uppercase tracking-widest placeholder:text-slate-600"
+                 className="w-full bg-[#0F172A] border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-white text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all font-black uppercase tracking-widest placeholder:text-slate-600"
                />
             </div>
             
-            <div className="flex items-center gap-2 p-1.5 bg-[#0F172A] border border-white/10 rounded-2xl">
+            <div className="flex items-center gap-2 p-1.5 bg-[#0F172A] border border-white/10 rounded-2xl shrink-0 justify-center">
                <button 
                  onClick={() => setView('grid')}
-                 className={`p-3 rounded-xl transition-all ${view === 'grid' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
+                 className={`flex-1 sm:flex-none p-3 rounded-xl transition-all ${view === 'grid' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
                >
-                 <LayoutGrid size={20} />
+                 <LayoutGrid size={18} />
                </button>
                <button 
                  onClick={() => setView('list')}
-                 className={`p-3 rounded-xl transition-all ${view === 'list' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
+                 className={`flex-1 sm:flex-none p-3 rounded-xl transition-all ${view === 'list' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
                >
-                 <ListIcon size={20} />
+                 <ListIcon size={18} />
                </button>
             </div>
           </div>

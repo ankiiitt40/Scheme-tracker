@@ -34,8 +34,8 @@ const Home = () => {
         <section className="max-w-7xl mx-auto px-6 py-24">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
-              <h2 className="text-4xl font-black mb-4 tracking-tighter">Available Schemes</h2>
-              <p className="text-slate-400">Showing {filteredSchemes.length} schemes based on your filters</p>
+              <h2 className="text-3xl md:text-4xl font-black mb-4 tracking-tighter uppercase">Available Schemes</h2>
+              <p className="text-slate-400 text-sm">Showing {filteredSchemes.length} schemes based on your filters</p>
             </div>
           </div>
 
