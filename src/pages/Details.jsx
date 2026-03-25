@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
   ArrowLeft, CheckCircle2, Calendar, Banknote, ShieldCheck, 
-  ArrowRight, UserCheck, AlertCircle 
+  ArrowRight, UserCheck, AlertCircle, HelpCircle, Clock, XCircle, ShieldAlert 
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Stepper from '../components/Stepper';
@@ -13,9 +13,23 @@ import { useAuth } from '../context/AuthContext';
 
 const Details = () => {
   const { id } = useParams();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, user } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const scheme = schemes.find(s => s.id === Number(id));
+
+  const [requestStatus, setRequestStatus] = useState(null);
+
+  React.useEffect(() => {
+    if (isLoggedIn && user && scheme) {
+      const savedRequests = JSON.parse(localStorage.getItem('schemeRequests') || '[]');
+      const userRequest = savedRequests.find(r => r.userId === user.email && r.schemeId === scheme.id);
+      if (userRequest) {
+        setRequestStatus(userRequest.status);
+      }
+    } else {
+      setRequestStatus(null);
+    }
+  }, [id, isLoggedIn, user, scheme]);
 
   if (!scheme) {
     return (
@@ -31,6 +45,30 @@ const Details = () => {
     } else {
       window.open(scheme.apply_link, '_blank');
     }
+  };
+
+  const handleRequestSupport = () => {
+    if (!isLoggedIn) {
+      setShowAuthModal(true);
+      return;
+    }
+    
+    // Create new request
+    const newRequest = {
+      id: `req_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`,
+      userId: user.email,
+      userName: user.name,
+      schemeId: scheme.id,
+      schemeName: scheme.name,
+      status: 'Pending',
+      timestamp: new Date().toISOString()
+    };
+
+    const savedRequests = JSON.parse(localStorage.getItem('schemeRequests') || '[]');
+    savedRequests.push(newRequest);
+    localStorage.setItem('schemeRequests', JSON.stringify(savedRequests));
+    
+    setRequestStatus('Pending');
   };
 
   return (
@@ -134,12 +172,33 @@ const Details = () => {
                   </ul>
                 </div>
 
-                <button 
-                  onClick={handleApply}
-                  className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black uppercase tracking-widest py-5 rounded-2xl shadow-xl shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 active:scale-95 group"
-                >
-                  Apply for Scheme <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </button>
+                <div className="space-y-3">
+                  <button 
+                    onClick={handleApply}
+                    className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black uppercase tracking-widest py-5 rounded-2xl shadow-xl shadow-indigo-500/20 transition-all flex items-center justify-center gap-2 active:scale-95 group"
+                  >
+                    Apply for Scheme <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  </button>
+
+                  {requestStatus ? (
+                    <div className="w-full bg-slate-800/50 border border-white/10 text-white py-4 rounded-2xl flex flex-col items-center justify-center gap-2">
+                       <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Support Request Status</p>
+                       <div className="flex items-center gap-2 font-black">
+                         {requestStatus === 'Pending' && <><Clock className="text-amber-400" size={18} /> <span className="text-amber-400">Pending</span></>}
+                         {requestStatus === 'Under Review' && <><ShieldAlert className="text-blue-400" size={18} /> <span className="text-blue-400">Under Review</span></>}
+                         {requestStatus === 'Approved' && <><CheckCircle2 className="text-emerald-400" size={18} /> <span className="text-emerald-400">Approved</span></>}
+                         {requestStatus === 'Rejected' && <><XCircle className="text-red-400" size={18} /> <span className="text-red-400">Rejected</span></>}
+                       </div>
+                    </div>
+                  ) : (
+                    <button 
+                      onClick={handleRequestSupport}
+                      className="w-full bg-white/5 hover:bg-white/10 text-white font-bold uppercase tracking-widest py-4 rounded-2xl border border-white/10 transition-all flex items-center justify-center gap-2 active:scale-95 group text-sm"
+                    >
+                      <HelpCircle size={18} /> Request Support to Apply
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>

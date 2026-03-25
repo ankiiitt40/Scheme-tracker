@@ -6,7 +6,7 @@ import { User, LogOut, Menu, X } from 'lucide-react';
 import AuthModal from './AuthModal';
 
 const Navbar = () => {
-  const { user, logout, isLoggedIn } = useAuth();
+  const { user, logout, isLoggedIn, isAdmin } = useAuth();
   const location = useLocation();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -16,6 +16,10 @@ const Navbar = () => {
     { name: 'All Schemes', path: '/schemes' },
     { name: 'About', path: '/about' }
   ];
+
+  if (isAdmin) {
+    navLinks.push({ name: 'Admin Panel', path: '/admin' });
+  }
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 

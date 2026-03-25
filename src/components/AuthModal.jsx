@@ -1,16 +1,36 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Lock, Mail, User, ShieldCheck } from 'lucide-react';
+import { X, Lock, Mail, User, ShieldCheck, AlertCircle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+
+const dummyUsers = [
+  { email: 'admin@gmail.com', password: '12345678', name: 'Admin', role: 'admin' },
+  { email: 'ankitvishwakarma@gmail.com', password: '12345678', name: 'Ankit Vishwakarma' },
+  { email: 'anirudha@gmail.com', password: '12345678', name: 'Anirudha' },
+  { email: 'arti@gmail.com', password: '12345678', name: 'Arti' },
+  { email: 'ayush@gmail.com', password: '12345678', name: 'Ayush' },
+  { email: 'nimi@gmail.com', password: '12345678', name: 'Nimi' },
+];
 
 const AuthModal = ({ isOpen, onClose }) => {
   const { login } = useAuth();
   const [formData, setFormData] = useState({ email: '', password: '', name: '' });
+  const [error, setError] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login({ name: formData.name || 'User', email: formData.email });
-    onClose();
+    setError('');
+    const foundUser = dummyUsers.find(
+      (u) => u.email === formData.email && u.password === formData.password
+    );
+
+    if (foundUser) {
+      login({ name: formData.name || foundUser.name, email: foundUser.email, role: foundUser.role || 'user' });
+      setFormData({ email: '', password: '', name: '' }); // reset form
+      onClose();
+    } else {
+      setError('Invalid email or password.');
+    }
   };
 
   return (
@@ -50,12 +70,17 @@ const AuthModal = ({ isOpen, onClose }) => {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-6">
+                {error && (
+                  <div className="flex items-center gap-2 p-3 text-sm text-red-500 bg-red-500/10 border border-red-500/20 rounded-xl">
+                    <AlertCircle size={16} />
+                    <p>{error}</p>
+                  </div>
+                )}
                 <div>
                   <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 block">Full Name</label>
                   <div className="relative group">
                     <User className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-indigo-500 transition-colors" size={18} />
                     <input
-                      required
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}

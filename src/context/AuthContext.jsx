@@ -8,8 +8,10 @@ export const AuthProvider = ({ children }) => {
   const login = (userData) => setUser(userData);
   const logout = () => setUser(null);
 
+  const isAdmin = user?.role === 'admin';
+
   return (
-    <AuthContext.Provider value={{ user, login, logout, isLoggedIn: !!user }}>
+    <AuthContext.Provider value={{ user, login, logout, isLoggedIn: !!user, isAdmin }}>
       {children}
     </AuthContext.Provider>
   );

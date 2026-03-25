@@ -1,116 +1,164 @@
 export const schemes = [
-  {
-    id: 1,
-    name: "Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)",
-    type: "Central",
-    category: "Farmer",
-    state: "All India",
-    benefits: "₹6,000 per year in three equal installments of ₹2,000 each. Payment is directly credited into the bank accounts of the beneficiaries held under small and marginal landholding farmers. Beneficiaries receive the funds directly via DBT mode, ensuring zero leakage.",
-    eligibility: "Landholding farmer families with cultivable landholding in their names. Excludes Institutional Landholders and Former/Current Ministers/MPs/MLAs. Families with income-tax payers are also excluded from the scheme.",
-    income_limit: "N/A for landholding families (excluding tax payers)",
-    documents: ["Aadhaar Card (Mandatory)", "Revised Land Records (Khasra Khatauni)", "Bank Account Detail with IFSC", "Citizenship Certificate", "Mobile Number Linked to Aadhaar for OTP verification"],
-    apply_link: "https://pmkisan.gov.in/",
-    rating: 4.8,
-    isRecommended: true,
-    difficulty: "Easy",
-    time_estimate: "15-20 mins",
-    steps: [
-      { title: "New Farmer Registration", description: "Visit the PM-KISAN Portal and select 'New Farmer Registration'. Enter your Aadhaar number and select your district and state for processing.", image: "/assets/steps/registration.jpg" },
-      { title: "Fill Land Details", description: "Enter Khasra/Khatauni numbers and precise land area as per the official revenue records of your state.", image: "/assets/steps/land.jpg" },
-      { title: "E-KYC verification", description: "Complete Aadhaar-based OTP E-KYC on the portal to ensure identity verification and prevent fraudulent claims.", image: "/assets/steps/ekyc.jpg" },
-      { title: "State/UT Approval", description: "Wait for the state/UT level nodal officer to verify and approve the data against actual land records.", image: "/assets/steps/approve.jpg" },
-      { title: "Payment Cycle", description: "Once approved, the amount is released during the next payment cycle via DBT to your seeded account.", image: "/assets/steps/payout.jpg" }
-    ]
-  },
-  {
-    id: 2,
-    name: "Post Matric Scholarship for SC Students",
-    type: "Central",
-    category: "Student",
-    state: "All India",
-    benefits: "Full reimbursement of non-refundable compulsory fees. Maintenance allowance up to ₹1,200 per month for hostellers. Study tour charges, thesis typing/printing charges, and book allowance provided based on course category.",
-    eligibility: "Students belonging to Scheduled Castes (SC). Must be studying in recognized Post-matriculation or post-secondary courses. Must have passed the previous final examination with required marks.",
-    income_limit: "Annual family income must not exceed ₹2.5 Lakh from all sources.",
-    documents: ["Caste Certificate (Verified by State Authority)", "Educational Marksheets of all previous years", "Income Certificate (Current Year)", "Institute Bonafide Certificate", "Aadhaar Card", "Fee Receipt of Current Course"],
-    apply_link: "https://scholarships.gov.in/",
-    rating: 4.5,
-    isRecommended: false,
-    difficulty: "Medium",
-    time_estimate: "45 mins",
-    steps: [
-      { title: "National Scholarship Portal Login", description: "Register as a new student on the National Scholarship Portal (NSP) with valid personal and academic credentials.", image: "/assets/steps/nsp_reg.jpg" },
-      { title: "Institute Selection", description: "Select your recognized educational institute and the course you are enrolled in from the digital drop-down menu.", image: "/assets/steps/institute.jpg" },
-      { title: "Document Uploading", description: "Upload scanned copies of Caste, Income, and Bonafide certificates as per the specified resolution on the portal.", image: "/assets/steps/upload.jpg" },
-      { title: "College Verification", description: "The online application is automatically forwarded to the Principal/Head office of your institute for digital signing.", image: "/assets/steps/verify.jpg" },
-      { title: "PFMS Disbursement", description: "After final approval by the District/State Nodal officer, scholarship is released via PFMS directly to your bank account.", image: "/assets/steps/disburse.jpg" }
-    ]
-  },
+ {
+  id: 1,
+  name: "Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)",
+  images: [
+    "/assets/1.png",
+    "/assets/2.jpg",
+    "/assets/3.jpg",
+    "/assets/4.png",
+    "/assets/5.jpg",
+    "/assets/6.png",
+    "/assets/8.png"
+  ],
+  type: "Central",
+  category: "Farmer",
+  state: "All India",
+  benefits: "₹6,000 per year in three equal installments of ₹2,000 each. Payment is directly credited into the bank accounts of the beneficiaries held under small and marginal landholding farmers. Beneficiaries receive the funds directly via DBT mode, ensuring zero leakage.",
+  eligibility: "Landholding farmer families with cultivable landholding in their names. Excludes Institutional Landholders and Former/Current Ministers/MPs/MLAs. Families with income-tax payers are also excluded from the scheme.",
+  income_limit: "N/A for landholding families (excluding tax payers)",
+  documents: [
+    "Aadhaar Card (Mandatory)",
+    "Revised Land Records (Khasra Khatauni)",
+    "Bank Account Detail with IFSC",
+    "Citizenship Certificate",
+    "Mobile Number Linked to Aadhaar for OTP verification"
+  ],
+  apply_link: "https://pmkisan.gov.in/",
+  rating: 4.8,
+  isRecommended: true,
+  difficulty: "Easy",
+  time_estimate: "15-20 mins",
+  steps: [
+    {
+      title: "Visit Official Portal",
+      description: "Go to PM-KISAN website.",
+      image: "/assets/1.png"
+    },
+    {
+      title: "New Farmer Registration",
+      description: "Enter Aadhaar and basic details.",
+      image: "/assets/2.jpg.jpeg"
+    },
+    {
+      title: "Fill Personal Details",
+      description: "Enter name, bank details.",
+      image: "/assets/3.jpg.jpeg"
+    },
+    {
+      title: "Fill Land Details",
+      description: "Enter land records.",
+      image: "/assets/4.png"
+    },
+    {
+      title: "Upload Documents",
+      description: "Upload required documents.",
+      image: "/assets/5.jpg.jpeg"
+    },
+    {
+      title: "E-KYC Verification",
+      description: "Complete OTP verification.",
+      image: "/assets/6.png"
+    },
+    {
+      title: "State Approval",
+      description: "Wait for verification.",
+      image: "/assets/8.png"
+    },
+   
+  ]
+},
+{
+  id: 2,
+  name: "Post Matric Scholarship for SC Students",
+  images: [
+    "/assets/scholarship 1.png",
+    "/assets/scholarship 2.png",
+    "/assets/scholarship 3.png",
+    "/assets/scholarship 4.png",
+    "/assets/scholarship 5.png",
+    "/assets/scholarship 6.png",
+    "/assets/scholarship 7.png",
+    "/assets/scholarship 9.png",
+    "/assets/scholarship 10.png",
+    "/assets/scholarship 11.png"
+  ],
+  type: "Central",
+  category: "Student",
+  state: "All India",
+  benefits: "Full reimbursement of non-refundable compulsory fees. Maintenance allowance up to ₹1,200 per month for hostellers. Study tour charges, thesis typing/printing charges, and book allowance provided based on course category.",
+  eligibility: "Students belonging to Scheduled Castes (SC). Must be studying in recognized Post-matriculation or post-secondary courses. Must have passed the previous final examination with required marks.",
+  income_limit: "Annual family income must not exceed ₹2.5 Lakh from all sources.",
+  documents: [
+    "Caste Certificate (Verified by State Authority)",
+    "Educational Marksheets of all previous years",
+    "Income Certificate (Current Year)",
+    "Institute Bonafide Certificate",
+    "Aadhaar Card",
+    "Fee Receipt of Current Course"
+  ],
+  apply_link: "https://scholarships.gov.in/",
+  rating: 4.5,
+  isRecommended: false,
+  difficulty: "Medium",
+  time_estimate: "45 mins",
+  steps: [
+    {
+      title: "Portal Registration",
+      description: "Register on NSP.",
+      image: "/assets/scholarship 1.png"
+    },
+    {
+      title: "Login",
+      description: "Login using credentials.",
+      image: "/assets/scholarship 2.png"
+    },
+    {
+      title: "Fill Application",
+      description: "Enter academic details.",
+      image: "/assets/scholarship 3.png"
+    },
+    {
+      title: "Upload Documents",
+      description: "Upload required files.",
+      image: "/assets/scholarship 4.png"
+    },
+    {
+      title: "Institute Verification",
+      description: "College verifies form.",
+      image: "/assets/scholarship 5.png"
+    },
+    {
+      title: "Final Submit",
+      description: "Submit application.",
+      image: "/assets/scholarship 6.png"
+    },
+    {
+      title: "State Approval",
+      description: "State checks eligibility.",
+      image: "/assets/scholarship 7.png"
+    },
+    {
+      title: "Payment Process",
+      description: "PFMS processes payment.",
+      image: "/assets/scholarship 9.png"
+    },
+    {
+      title: "Scholarship Credit",
+      description: "Amount credited.",
+      image: "/assets/scholarship 10.png"
+    },
+    {
+      title: "Status Check",
+      description: "Track on portal.",
+      image: "/assets/scholarship 11.png"
+    }
+  ]
+},
   {
     id: 3,
-    name: "Stand-Up India Scheme",
-    type: "Central",
-    category: "Business",
-    state: "All India",
-    benefits: "Bank loans between ₹10 lakh and ₹1 crore for setting up a greenfield enterprise in manufacturing, services, or the trading sector. Refinance through SIDBI and Credit Guarantee cover provided.",
-    eligibility: "SC/ST and/or women entrepreneurs above 18 years of age. Enterprise should be for first-time ventures only (greenfield). Borrowers must not be in default to any bank or financial institution.",
-    income_limit: "N/A (Evaluation based on repayment capacity and project feasibility)",
-    documents: ["Detailed Project Report (DPR)", "Identity Proof (PAN/Passport)", "Proof of Business Address/Location", "Pollution Clearance (if industrial)", "Business License/Registration certificate"],
-    apply_link: "https://www.standupmitra.in/",
-    rating: 4.7,
-    isRecommended: true,
-    difficulty: "Hard",
-    time_estimate: "2-4 hours",
-    steps: [
-      { title: "Initial Registration", description: "Register on the Stand-Up Mitra official portal as a primary borrower in one of the three categories: Ready Borrower, Trainee Borrower, or Walk-in.", image: "/assets/steps/portal.jpg" },
-      { title: "Form Preparation", description: "Prepare the digital application with full business specifications, investment requirements, and machinery details.", image: "/assets/steps/prepare.jpg" },
-      { title: "Loan Sanctioning", description: "The designated bank branch evaluates the project's viability and issues a formal sanction letter following the due process.", image: "/assets/steps/sanction.jpg" },
-      { title: "Disbursement", description: "After documentation and creation of requested security/collateral, the loan amount is released for business setup.", image: "/assets/steps/disburse_loan.jpg" }
-    ]
-  },
-  {
-    id: 4,
-    name: "Ayushman Bharat PM-JAY",
-    type: "Central",
-    category: "Health",
-    state: "All India",
-    benefits: "Health cover of up to ₹5 Lakh per family per year for secondary and tertiary care hospitalization. This includes pre-hospitalization and post-hospitalization costs (up to 15 days) and covers over 1,300+ medical procedures.",
-    eligibility: "Based on Socio-Economic Caste Census (SECC) 2011 data across occupational and deprivation criteria for rural and urban areas. Families identified as poor and vulnerable are automatically eligible.",
-    income_limit: "SECC-based classification (Based on deprivation levels)",
-    documents: ["Aadhaar Card", "Ration Card (NFSA ID)", "PM Letter (HHD Number)", "Identity Proof (Voter ID/Driving License)"],
-    apply_link: "https://setu.pmjay.gov.in/",
-    rating: 4.9,
-    isRecommended: true,
-    difficulty: "Easy",
-    time_estimate: "10 mins",
-    steps: [
-      { title: "Check Eligibility Status", description: "Login to the Mera PMJAY portal (PMAY-Setu) using your mobile number and search your name in the SECC database.", image: "/assets/steps/status.jpg" },
-      { title: "Visit Empaneled Hospital", description: "Visit any empaneled hospital and meet the 'Project Ayushman Mitra' (AM) at the designated desk.", image: "/assets/steps/visit_hosp.jpg" },
-      { title: "Golden Card Issuance", description: "Provide your Aadhaar and Ration card details for biometric verification and get your smart card (Golden Card) printed instantly.", image: "/assets/steps/card.jpg" }
-    ]
-  },
-  {
-    id: 5,
-    name: "Mahila Samman Savings Certificate",
-    type: "Central",
-    category: "Women",
-    state: "All India",
-    benefits: "A one-time small savings scheme for women and girl children. Offers a fixed interest rate of 7.5% per annum, compounded quarterly. The minimum deposit is ₹1,000 and the maximum is ₹2 Lakh for a 2-year tenure.",
-    eligibility: "Available for any woman of any age or a minor girl child (opened by a legal guardian). Multiple accounts can be opened with a time gap of three months between account openings.",
-    income_limit: "N/A",
-    documents: ["Aadhaar card", "PAN Card", "KYC documents (Address proof)", "Recent passport size photographs (2)"],
-    apply_link: "https://www.indiapost.gov.in/",
-    rating: 4.6,
-    isRecommended: false,
-    difficulty: "Easy",
-    time_estimate: "15 mins",
-    steps: [
-      { title: "Fill Application Form", description: "Visit the Post Office or authorized bank and fill out the 'Account Opening Form' (Form-1) for MSSC.", image: "/assets/steps/post_form.jpg" },
-      { title: "Document Submission", description: "Submit your KYC documents (Aadhaar/PAN) along with the signed form at the counter for verification.", image: "/assets/steps/submit_mssc.jpg" },
-      { title: "Deposit Funds", description: "Deposit your chosen amount (up to ₹2 Lakh) through cash or cheque to activate the certificate maturity cycle.", image: "/assets/steps/pay.jpg" }
-    ]
-  },
-  {
-    id: 6,
+    image: ["/assets/Ladlilaxmi1.jpg", "  ", "/assets/Ladlilaxmi3.jpg", "/assets/Ladlilaxmi4.jpg", "/assets/Ladlilaxmi5.jpg", "/assets/Ladlilaxmi6.jpg" ],
+
     name: "Ladli Laxmi Yojana 2.0",
     type: "State",
     category: "Women",
@@ -133,6 +181,71 @@ export const schemes = [
       { title: "Final Grant @ 21", description: "The final payout of ₹1 Lakh is released once the girl child reaches 21 years of age.", image: "/assets/Ladlilaxmi6.jpg" }
     ]
   },
+  {
+    id: 4,
+    name: "Stand-Up India Scheme",
+    type: "Central",
+    category: "Business",
+    state: "All India",
+    benefits: "Bank loans between ₹10 lakh and ₹1 crore for setting up a greenfield enterprise in manufacturing, services, or the trading sector. Refinance through SIDBI and Credit Guarantee cover provided.",
+    eligibility: "SC/ST and/or women entrepreneurs above 18 years of age. Enterprise should be for first-time ventures only (greenfield). Borrowers must not be in default to any bank or financial institution.",
+    income_limit: "N/A (Evaluation based on repayment capacity and project feasibility)",
+    documents: ["Detailed Project Report (DPR)", "Identity Proof (PAN/Passport)", "Proof of Business Address/Location", "Pollution Clearance (if industrial)", "Business License/Registration certificate"],
+    apply_link: "https://www.standupmitra.in/",
+    rating: 4.7,
+    isRecommended: true,
+    difficulty: "Hard",
+    time_estimate: "2-4 hours",
+    steps: [
+      { title: "Initial Registration", description: "Register on the Stand-Up Mitra official portal as a primary borrower in one of the three categories: Ready Borrower, Trainee Borrower, or Walk-in.", image: "/assets/steps/portal.jpg" },
+      { title: "Form Preparation", description: "Prepare the digital application with full business specifications, investment requirements, and machinery details.", image: "/assets/steps/prepare.jpg" },
+      { title: "Loan Sanctioning", description: "The designated bank branch evaluates the project's viability and issues a formal sanction letter following the due process.", image: "/assets/steps/sanction.jpg" },
+      { title: "Disbursement", description: "After documentation and creation of requested security/collateral, the loan amount is released for business setup.", image: "/assets/steps/disburse_loan.jpg" }
+    ]
+  },
+  {
+    id: 5,
+    name: "Ayushman Bharat PM-JAY",
+    type: "Central",
+    category: "Health",
+    state: "All India",
+    benefits: "Health cover of up to ₹5 Lakh per family per year for secondary and tertiary care hospitalization. This includes pre-hospitalization and post-hospitalization costs (up to 15 days) and covers over 1,300+ medical procedures.",
+    eligibility: "Based on Socio-Economic Caste Census (SECC) 2011 data across occupational and deprivation criteria for rural and urban areas. Families identified as poor and vulnerable are automatically eligible.",
+    income_limit: "SECC-based classification (Based on deprivation levels)",
+    documents: ["Aadhaar Card", "Ration Card (NFSA ID)", "PM Letter (HHD Number)", "Identity Proof (Voter ID/Driving License)"],
+    apply_link: "https://setu.pmjay.gov.in/",
+    rating: 4.9,
+    isRecommended: true,
+    difficulty: "Easy",
+    time_estimate: "10 mins",
+    steps: [
+      { title: "Check Eligibility Status", description: "Login to the Mera PMJAY portal (PMAY-Setu) using your mobile number and search your name in the SECC database.", image: "/assets/steps/status.jpg" },
+      { title: "Visit Empaneled Hospital", description: "Visit any empaneled hospital and meet the 'Project Ayushman Mitra' (AM) at the designated desk.", image: "/assets/steps/visit_hosp.jpg" },
+      { title: "Golden Card Issuance", description: "Provide your Aadhaar and Ration card details for biometric verification and get your smart card (Golden Card) printed instantly.", image: "/assets/steps/card.jpg" }
+    ]
+  },
+  {
+    id: 6,
+    name: "Mahila Samman Savings Certificate",
+    type: "Central",
+    category: "Women",
+    state: "All India",
+    benefits: "A one-time small savings scheme for women and girl children. Offers a fixed interest rate of 7.5% per annum, compounded quarterly. The minimum deposit is ₹1,000 and the maximum is ₹2 Lakh for a 2-year tenure.",
+    eligibility: "Available for any woman of any age or a minor girl child (opened by a legal guardian). Multiple accounts can be opened with a time gap of three months between account openings.",
+    income_limit: "N/A",
+    documents: ["Aadhaar card", "PAN Card", "KYC documents (Address proof)", "Recent passport size photographs (2)"],
+    apply_link: "https://www.indiapost.gov.in/",
+    rating: 4.6,
+    isRecommended: false,
+    difficulty: "Easy",
+    time_estimate: "15 mins",
+    steps: [
+      { title: "Fill Application Form", description: "Visit the Post Office or authorized bank and fill out the 'Account Opening Form' (Form-1) for MSSC.", image: "/assets/steps/post_form.jpg" },
+      { title: "Document Submission", description: "Submit your KYC documents (Aadhaar/PAN) along with the signed form at the counter for verification.", image: "/assets/steps/submit_mssc.jpg" },
+      { title: "Deposit Funds", description: "Deposit your chosen amount (up to ₹2 Lakh) through cash or cheque to activate the certificate maturity cycle.", image: "/assets/steps/pay.jpg" }
+    ]
+  },
+
   {
     id: 7,
     name: "Mukhyamantri Amrutum (MA) Yojana",
