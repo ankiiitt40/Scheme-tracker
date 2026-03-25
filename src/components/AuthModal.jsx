@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Lock, Mail, User, ShieldCheck, AlertCircle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 
 const dummyUsers = [
   { email: 'admin@gmail.com', password: '12345678', name: 'Admin', role: 'admin' },
@@ -14,6 +15,7 @@ const dummyUsers = [
 
 const AuthModal = ({ isOpen, onClose }) => {
   const { login } = useAuth();
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({ email: '', password: '', name: '' });
   const [error, setError] = useState('');
 
@@ -29,7 +31,7 @@ const AuthModal = ({ isOpen, onClose }) => {
       setFormData({ email: '', password: '', name: '' }); // reset form
       onClose();
     } else {
-      setError('Invalid email or password.');
+      setError(t('Invalid email or password.', 'अमान्य ईमेल या पासवर्ड।'));
     }
   };
 
@@ -57,8 +59,8 @@ const AuthModal = ({ isOpen, onClose }) => {
                     <ShieldCheck size={24} />
                   </div>
                   <div>
-                    <h3 className="text-xl font-black text-white">Verification</h3>
-                    <p className="text-xs text-slate-500 font-bold uppercase tracking-widest">Identify yourself to proceed</p>
+                    <h3 className="text-xl font-black text-white">{t('Verification', 'सत्यापन')}</h3>
+                    <p className="text-xs text-slate-500 font-bold uppercase tracking-widest">{t('Identify yourself to proceed', 'आगे बढ़ने के लिए अपनी पहचान करें')}</p>
                   </div>
                 </div>
                 <button 
@@ -77,7 +79,7 @@ const AuthModal = ({ isOpen, onClose }) => {
                   </div>
                 )}
                 <div>
-                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 block">Full Name</label>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 block">{t('Full Name', 'पूरा नाम')}</label>
                   <div className="relative group">
                     <User className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-indigo-500 transition-colors" size={18} />
                     <input
@@ -91,7 +93,7 @@ const AuthModal = ({ isOpen, onClose }) => {
                 </div>
 
                 <div>
-                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 block">Identity Email</label>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 block">{t('Identity Email', 'पहचान ईमेल')}</label>
                   <div className="relative group">
                     <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-indigo-500 transition-colors" size={18} />
                     <input
@@ -106,7 +108,7 @@ const AuthModal = ({ isOpen, onClose }) => {
                 </div>
 
                 <div>
-                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 block">Security Token</label>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-3 block">{t('Security Token', 'सुरक्षा टोकन')}</label>
                   <div className="relative group">
                     <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-indigo-500 transition-colors" size={18} />
                     <input
@@ -125,7 +127,7 @@ const AuthModal = ({ isOpen, onClose }) => {
                     type="submit"
                     className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-black uppercase tracking-widest py-5 rounded-2xl shadow-2xl shadow-indigo-600/30 transition-all active:scale-[0.98] border border-indigo-500/20"
                   >
-                    Confirm Identity
+                    {t('Confirm Identity', 'पहचान की पुष्टि करें')}
                   </button>
                 </div>
               </form>

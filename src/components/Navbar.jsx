@@ -2,23 +2,25 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
-import { User, LogOut, Menu, X } from 'lucide-react';
+import { User, LogOut, Menu, X, Globe, ChevronDown } from 'lucide-react';
 import AuthModal from './AuthModal';
+import { useLanguage } from '../context/LanguageContext';
 
 const Navbar = () => {
   const { user, logout, isLoggedIn, isAdmin } = useAuth();
+  const { lang, setLang, t } = useLanguage();
   const location = useLocation();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Discover', path: '/' },
-    { name: 'All Schemes', path: '/schemes' },
-    { name: 'About', path: '/about' }
+    { name: t('Discover', 'खोजें'), path: '/' },
+    { name: t('All Schemes', 'सभी योजनाएं'), path: '/schemes' },
+    { name: t('About', 'हमारे बारे में'), path: '/about' }
   ];
 
   if (isAdmin) {
-    navLinks.push({ name: 'Admin Panel', path: '/admin' });
+    navLinks.push({ name: t('Admin Panel', 'एडमिन पैनल'), path: '/admin' });
   }
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -60,7 +62,22 @@ const Navbar = () => {
           </div>
 
           {/* Right Section */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
+            {/* Language Switcher Desktop */}
+            <div className="hidden md:flex items-center gap-1 p-1 bg-white/5 border border-white/10 rounded-xl">
+               <button 
+                 onClick={() => setLang('ENG')}
+                 className={`px-3 py-1.5 rounded-lg text-[10px] font-black tracking-widest transition-all ${lang === 'ENG' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
+               >
+                 ENG
+               </button>
+               <button 
+                 onClick={() => setLang('HIN')}
+                 className={`px-3 py-1.5 rounded-lg text-[10px] font-black tracking-widest transition-all ${lang === 'HIN' ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}
+               >
+                 हिंदी
+               </button>
+            </div>
             {/* Desktop User Info */}
             <div className="hidden md:flex items-center gap-4">
               {isLoggedIn ? (
@@ -115,6 +132,28 @@ const Navbar = () => {
               className="md:hidden bg-[#020617] border-b border-white/5 overflow-hidden"
             >
               <div className="px-6 py-8 space-y-6">
+                {/* Mobile Language Switcher */}
+                <div className="flex items-center justify-between p-4 bg-white/5 border border-white/10 rounded-2xl mb-4">
+                  <div className="flex items-center gap-2">
+                    <Globe size={18} className="text-indigo-400" />
+                    <span className="text-[10px] font-black text-white uppercase tracking-widest">{t('Select Language', 'भाषा चुनें')}</span>
+                  </div>
+                  <div className="flex gap-1 p-1 bg-white/5 border border-white/10 rounded-xl">
+                    <button 
+                      onClick={() => setLang('ENG')}
+                      className={`px-4 py-2 rounded-lg text-[10px] font-black tracking-widest transition-all ${lang === 'ENG' ? 'bg-indigo-600 text-white' : 'text-slate-500'}`}
+                    >
+                      ENG
+                    </button>
+                    <button 
+                      onClick={() => setLang('HIN')}
+                      className={`px-4 py-2 rounded-lg text-[10px] font-black tracking-widest transition-all ${lang === 'HIN' ? 'bg-indigo-600 text-white' : 'text-slate-500'}`}
+                    >
+                      हिंदी
+                    </button>
+                  </div>
+                </div>
+
                 <div className="flex flex-col gap-4">
                   {navLinks.map((link) => (
                     <Link 

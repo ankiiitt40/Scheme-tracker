@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Star, Clock, Layers } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 
 const SchemeCard = ({ scheme }) => {
+  const { t } = useLanguage();
   return (
     <motion.div 
       whileHover={{ y: -10 }}
@@ -18,7 +20,7 @@ const SchemeCard = ({ scheme }) => {
           </span>
           {scheme.isRecommended && (
             <span className="flex items-center gap-1 px-3 py-1 bg-amber-500/20 text-amber-300 rounded-full text-xs font-bold tracking-wider uppercase border border-amber-500/30">
-              <Star size={12} fill="currentColor" /> Top Recommended
+              <Star size={12} fill="currentColor" /> {t('Top Recommended', 'शीर्ष अनुशंसित')}
             </span>
           )}
         </div>
@@ -34,7 +36,7 @@ const SchemeCard = ({ scheme }) => {
         <div className="grid grid-cols-2 gap-4 mb-6">
           <div className="flex items-center gap-2 text-slate-500 text-xs">
             <Layers size={14} className="text-indigo-500" />
-            <span>{scheme.difficulty} Difficulty</span>
+            <span>{scheme.difficulty} {t('Difficulty', 'कठिनाई')}</span>
           </div>
           <div className="flex items-center gap-2 text-slate-500 text-xs">
             <Clock size={14} className="text-indigo-500" />
@@ -49,9 +51,9 @@ const SchemeCard = ({ scheme }) => {
           </div>
           <Link 
             to={`/scheme/${scheme.id}`}
-            className="flex items-center gap-2 text-indigo-400 font-semibold group/link"
+            className="flex items-center gap-2 text-indigo-400 font-semibold group/link hover:text-indigo-300 transition-colors"
           >
-            Details <ArrowRight size={18} className="group-hover/link:translate-x-1 transition-transform" />
+            {t('Details', 'विवरण')} <ArrowRight size={18} className="group-hover/link:translate-x-1 transition-transform" />
           </Link>
         </div>
       </div>

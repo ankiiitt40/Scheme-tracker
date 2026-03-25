@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, Image as ImageIcon, Maximize2, X } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Stepper = ({ steps }) => {
+  const { t } = useLanguage();
   const [expandedImage, setExpandedImage] = useState(null);
 
   return (
@@ -86,7 +88,7 @@ const Stepper = ({ steps }) => {
                ) : (
                  <div className="text-indigo-400/30 flex flex-col items-center gap-2">
                    <ImageIcon size={40} className="text-indigo-400/30" />
-                   <span className="text-[10px] uppercase font-bold tracking-widest text-indigo-400/50">Instructional Graphic</span>
+                   <span className="text-[10px] uppercase font-bold tracking-widest text-indigo-400/50">{t('Instructional Graphic', 'निर्देशात्मक ग्राफिक')}</span>
                  </div>
                )}
             </div>

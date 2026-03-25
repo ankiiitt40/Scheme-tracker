@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 
 const Hero = () => {
+  const { t } = useLanguage();
   return (
     <section className="relative pt-32 pb-40 overflow-hidden bg-[#020617]">
       {/* Subtle Gradient Background */}
@@ -20,7 +22,7 @@ const Hero = () => {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
           </span>
-          Next-gen Discovery Engine
+          {t('Next-gen Discovery Engine', 'नेक्स्ट-जेन डिस्कवरी इंजन')}
         </motion.div>
         
         <motion.h1 
@@ -29,9 +31,9 @@ const Hero = () => {
           transition={{ delay: 0.1, duration: 0.5 }}
           className="text-4xl sm:text-6xl md:text-8xl font-black text-white leading-tight mb-8 tracking-tighter"
         >
-          Find the Right <br className="hidden sm:block" />
+          {t('Find the Right', 'सही')} <br className="hidden sm:block" />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-violet-400 to-blue-400">
-            Government Scheme
+            {t('Government Scheme', 'सरकारी योजना ढूंढें')}
           </span>
         </motion.h1>
 
@@ -41,7 +43,10 @@ const Hero = () => {
           transition={{ delay: 0.2, duration: 0.5 }}
           className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed"
         >
-          Discover eligibility, benefits, and step-by-step guides for hundreds of schemes using our AI-driven search and recommendation engine.
+          {t(
+            'Discover eligibility, benefits, and step-by-step guides for hundreds of schemes using our AI-driven search and recommendation engine.',
+            'हमारे एआई-आधारित खोज और अनुशंसा इंजन का उपयोग करके सैकड़ों योजनाओं के लिए पात्रता, लाभ और चरण-दर-चरण गाइड खोजें।'
+          )}
         </motion.p>
       </div>
     </section>

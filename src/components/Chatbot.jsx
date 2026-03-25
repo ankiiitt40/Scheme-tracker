@@ -4,11 +4,13 @@ import { MessageCircle, X, Send, Bot, Loader2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { askAI } from '../api/ai';
 import { schemes } from '../data/schemes';
+import { useLanguage } from '../context/LanguageContext';
 
 const Chatbot = ({ schemeData }) => {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: 'bot', text: "Hello! I'm SATHI AI, your Government Scheme Expert. How can I assist you with your discovery mission today?" }
+    { role: 'bot', text: t("Hello! I'm SATHI AI, your Government Scheme Expert. How can I assist you with your discovery mission today?", "नमस्ते! मैं साथी एआई (SATHI AI) हूँ, आपका सरकारी योजना विशेषज्ञ। आज मैं आपकी खोज में कैसे मदद कर सकता हूँ?") }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +36,7 @@ const Chatbot = ({ schemeData }) => {
       const response = await askAI(input, schemeData, schemes);
       setMessages(prev => [...prev, { role: 'bot', text: response }]);
     } catch (error) {
-      setMessages(prev => [...prev, { role: 'bot', text: "I'm having trouble with my neural links right now. Please try again later." }]);
+      setMessages(prev => [...prev, { role: 'bot', text: t("I'm having trouble with my neural links right now. Please try again later.", "मुझे अभी आपके सवाल का जवाब देने में परेशानी हो रही है। कृपया बाद में पुनः प्रयास करें।") }]);
     } finally {
       setIsLoading(false);
     }
@@ -58,10 +60,10 @@ const Chatbot = ({ schemeData }) => {
                 </div>
                 <div>
                   <h4 className="text-white font-bold text-sm">SATHI AI</h4>
-                  <p className="text-indigo-300 text-[10px] uppercase font-bold tracking-widest">Expert Advisor</p>
+                  <p className="text-indigo-300 text-[10px] uppercase font-bold tracking-widest">{t('Expert Advisor', 'विशेषज्ञ सलाहकार')}</p>
                 </div>
               </div>
-              <button 
+              <button
                 onClick={() => setIsOpen(false)}
                 className="text-slate-400 hover:text-white transition-colors p-2"
               >
@@ -73,19 +75,18 @@ const Chatbot = ({ schemeData }) => {
             <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 bg-transparent custom-scrollbar">
               {messages.map((m, i) => (
                 <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[90%] p-4 rounded-2xl text-[13px] sm:text-sm leading-relaxed ${
-                    m.role === 'user' 
-                      ? 'bg-indigo-600 text-white rounded-tr-none shadow-lg font-medium' 
+                  <div className={`max-w-[90%] p-4 rounded-2xl text-[13px] sm:text-sm leading-relaxed ${m.role === 'user'
+                      ? 'bg-indigo-600 text-white rounded-tr-none shadow-lg font-medium'
                       : 'bg-white/5 text-slate-300 border border-white/10 rounded-tl-none markdown-container'
-                  }`}>
+                    }`}>
                     {m.role === 'bot' ? (
-                      <ReactMarkdown 
+                      <ReactMarkdown
                         components={{
-                          h3: ({node, ...props}) => <h3 className="text-indigo-400 font-black uppercase text-[10px] tracking-widest mt-4 mb-2" {...props} />,
-                          p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />,
-                          ul: ({node, ...props}) => <ul className="space-y-1 mb-4" {...props} />,
-                          li: ({node, ...props}) => <li className="flex gap-2 before:content-['•'] before:text-indigo-500" {...props} />,
-                          strong: ({node, ...props}) => <strong className="text-indigo-300 font-bold" {...props} />
+                          h3: ({ node, ...props }) => <h3 className="text-indigo-400 font-black uppercase text-[10px] tracking-widest mt-4 mb-2" {...props} />,
+                          p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
+                          ul: ({ node, ...props }) => <ul className="space-y-1 mb-4" {...props} />,
+                          li: ({ node, ...props }) => <li className="flex gap-2 before:content-['•'] before:text-indigo-500" {...props} />,
+                          strong: ({ node, ...props }) => <strong className="text-indigo-300 font-bold" {...props} />
                         }}
                       >
                         {m.text}
@@ -109,15 +110,15 @@ const Chatbot = ({ schemeData }) => {
             {/* Input */}
             <div className="p-4 sm:p-6 bg-white/5 border-t border-white/10">
               <div className="flex gap-2">
-                <input 
+                <input
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder="Ask SATHI AI..."
+                  placeholder={t('Ask SATHI AI...', 'साथी एआई से पूछें...')}
                   className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-white text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 transition-colors"
                 />
-                <button 
+                <button
                   onClick={handleSend}
                   className="bg-indigo-600 text-white p-2.5 rounded-xl hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-500/20"
                 >

@@ -4,22 +4,40 @@ import { Search, Filter, LayoutGrid, List as ListIcon, ChevronRight } from 'luci
 import Navbar from '../components/Navbar';
 import SchemeCard from '../components/SchemeCard';
 import Chatbot from '../components/Chatbot';
+import { useLanguage } from '../context/LanguageContext';
 import { schemes } from '../data/schemes';
 
 const AllSchemes = () => {
+  const { t, translateScheme } = useLanguage();
   const [searchTerm, setSearchTerm] = useState('');
   const [category, setCategory] = useState('All');
   const [view, setView] = useState('grid'); // grid or list
 
   const categories = ['All', 'Student', 'Farmer', 'Business', 'Women', 'Health', 'Welfare', 'Housing', 'Pension', 'Education'];
 
+  const categoryTranslations = {
+    'All': t('All', 'सभी'),
+    'Student': t('Student', 'छात्र'),
+    'Farmer': t('Farmer', 'किसान'),
+    'Business': t('Business', 'व्यापार'),
+    'Women': t('Women', 'महिलाएं'),
+    'Health': t('Health', 'स्वास्थ्य'),
+    'Welfare': t('Welfare', 'कल्याण'),
+    'Housing': t('Housing', 'आवास'),
+    'Pension': t('Pension', 'पेंशन'),
+    'Education': t('Education', 'शिक्षा')
+  };
+
   const filteredSchemes = useMemo(() => {
-    return schemes.filter(s => {
-      const matchSearch = s.name.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchCategory = category === 'All' || s.category === category;
+    // Filter schemes based on search, category and type in English
+    return schemes.filter(scheme => {
+      // Allow searching by english or translated name
+      const translatedSchemeName = translateScheme(scheme).name.toLowerCase();
+      const matchSearch = scheme.name.toLowerCase().includes(searchTerm.toLowerCase()) || translatedSchemeName.includes(searchTerm.toLowerCase());
+      const matchCategory = category === 'All' || scheme.category === category;
       return matchSearch && matchCategory;
     });
-  }, [searchTerm, category]);
+  }, [searchTerm, category, translateScheme]);
 
   return (
     <div className="min-h-screen bg-[#020617] text-white pt-32 pb-24 overflow-hidden">
@@ -31,14 +49,14 @@ const AllSchemes = () => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6">
         <header className="mb-12 sm:mb-16">
           <h1 className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter leading-tight mb-8">
-            ALL <span className="text-indigo-500">SCHEMES</span>
+            {t('ALL', 'सभी')} <span className="text-indigo-500">{t('SCHEMES', 'योजनाएं')}</span>
           </h1>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6">
             <div className="flex-1 min-w-0 relative group">
                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-indigo-500 transition-colors" size={18} />
                <input 
                  type="text"
-                 placeholder="Search by name..."
+                 placeholder={t('Search by name...', 'नाम से खोजें...')}
                  value={searchTerm}
                  onChange={(e) => setSearchTerm(e.target.value)}
                  className="w-full bg-[#0F172A] border border-white/10 rounded-2xl py-4 pl-12 pr-6 text-white text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all font-black uppercase tracking-widest placeholder:text-slate-600"
@@ -74,7 +92,7 @@ const AllSchemes = () => {
                    : 'bg-transparent text-slate-500 border-white/10 hover:border-white/30 hover:text-white'
                }`}
              >
-               {cat}
+               {categoryTranslations[cat] || cat}
              </button>
            ))}
         </div>
@@ -87,7 +105,9 @@ const AllSchemes = () => {
                 layout
                 className={view === 'grid' ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" : "space-y-4"}
               >
-                {filteredSchemes.map((scheme, index) => (
+                {filteredSchemes.map((schemeRaw, index) => {
+                  const scheme = translateScheme(schemeRaw);
+                  return (
                   <motion.div
                     key={scheme.id}
                     layout
@@ -102,12 +122,12 @@ const AllSchemes = () => {
                        <ListRow scheme={scheme} />
                     )}
                   </motion.div>
-                ))}
+                )})}
               </motion.div>
             ) : (
               <div className="text-center py-32 space-y-4">
                 <Search className="mx-auto text-slate-800" size={60} />
-                <p className="text-slate-500 font-black uppercase tracking-widest">No matching schemes found.</p>
+                <p className="text-slate-500 font-black uppercase tracking-widest">{t('No matching schemes found.', 'कोई मेल खाने वाली योजना नहीं मिली।')}</p>
               </div>
             )}
           </AnimatePresence>
@@ -119,7 +139,9 @@ const AllSchemes = () => {
   );
 };
 
-const ListRow = ({ scheme }) => (
+const ListRow = ({ scheme }) => {
+  const { t } = useLanguage();
+  return (
   <div className="flex flex-wrap items-center justify-between gap-6 bg-[#0F172A] p-6 rounded-3xl border border-white/10 hover:border-indigo-500/30 transition-all group">
      <div className="flex-1 min-w-[200px] flex items-center gap-6">
         <div className="w-14 h-14 bg-indigo-600/10 rounded-2xl flex items-center justify-center text-indigo-400 font-black text-xl shink-0">
@@ -136,11 +158,11 @@ const ListRow = ({ scheme }) => (
      </div>
      <div className="flex items-center gap-12 text-center hidden md:flex">
         <div>
-           <p className="text-[9px] text-slate-500 font-bold uppercase tracking-widest mb-1">Rating</p>
+           <p className="text-[9px] text-slate-500 font-bold uppercase tracking-widest mb-1">{t('Rating', 'रेटिंग')}</p>
            <p className="text-xs font-black text-white">{scheme.rating}</p>
         </div>
         <div>
-           <p className="text-[11px] text-slate-500 font-bold uppercase tracking-widest mb-1">Time</p>
+           <p className="text-[11px] text-slate-500 font-bold uppercase tracking-widest mb-1">{t('Time', 'समय')}</p>
            <p className="text-xs font-black text-white">{scheme.time_estimate}</p>
         </div>
      </div>
@@ -151,6 +173,7 @@ const ListRow = ({ scheme }) => (
        <ChevronRight size={20} />
      </a>
   </div>
-);
+  );
+};
 
 export default AllSchemes;
